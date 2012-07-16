@@ -160,4 +160,18 @@ public class Board implements BoardInterface {
 		
 	}
 
+	@Override
+	/**
+	 * Check if board ha at least one live bubble
+	 * 
+	 * @return true if there is at last one live bubble
+	 * 			false otherwise
+	 */
+	public boolean isEmpty() {
+		for (int i=0; i< BoardInterface.yMaxSize ; i++)
+			for(int j=0; i< BoardInterface.xMaxSize; j++)
+				if(this.board[i][j].isAlive()) return true;
+		return false;
+	}
+
 }

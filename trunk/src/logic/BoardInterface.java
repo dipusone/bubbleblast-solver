@@ -10,5 +10,6 @@ public interface BoardInterface {
 	public void setBubble(int xPos, int yPos, int value);
 	public void touch(int yPos, int xPos);
 	public int getBubbleValue(int yPos, int xPos);
+	public boolean isEmpty();
 
 }
