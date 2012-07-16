@@ -5,7 +5,12 @@ package gui;
  */
 
 
+import java.awt.Dimension;
 import java.io.*;
+import java.util.LinkedList;
+
+import solver.BoardSolver;
+import solver.BoardSolverInterface;
 
 import logic.*;
 
@@ -41,10 +46,25 @@ public class Textual {
                         }
 
                         }
-                for (int i=0; i< 4; i++){
-                        board.touch(0, 1);
-                        System.out.println();
-                        printBoard(board);
+                System.out.print("Number of moves?: ");
+                int moves=0;
+				try {
+					moves = Integer.parseInt(inputBuffer.readLine());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                System.out.println();
+                
+                BoardSolverInterface solver=(BoardSolverInterface)new BoardSolver();
+                solver.initBoard(board);
+                solver.initMoves(moves);
+                solver.solve();
+               System.out.println(solver.toString());
+               
 
         }
 
@@ -54,7 +74,7 @@ public class Textual {
 
 
 
-        }
+        
 
 
         private static void printDottedBoard(BoardInterface board,int cury, int curx){

@@ -14,6 +14,9 @@ public class BoardSolver implements BoardSolverInterface {
 	Integer moves=null;
 	
 	
+	public BoardSolver(){
+		
+	}
 	
 	@Override
 	public void initBoard(BoardInterface board) {
@@ -33,7 +36,9 @@ public class BoardSolver implements BoardSolverInterface {
 
 	@Override
 	public LinkedList<Dimension> solve() {
-		// TODO scrivere l'algoritmo. appoggiarsi ad un metodo privato solve ricorsivo! Tiggiuro che ho lo pseudocodice...
+		if(solver(this.board, this.moves,this.solution))
+			return this.solution;
+		
 		return null;
 	}
 
@@ -43,5 +48,41 @@ public class BoardSolver implements BoardSolverInterface {
 		return (LinkedList<Dimension>)this.solution.clone();
 	}
 	
+	
+	private boolean solver(BoardInterface board, int moves, LinkedList<Dimension> solutions){
+		
+		if(board.isEmpty()){return true;}
+		if(moves <= 0 && board.isEmpty()){return true;}
+		if (moves <= 0 && !board.isEmpty()){return false;}
+		
+		for(int i=0; i <  BoardInterface.yMaxSize; i++)
+			for(int j=0; j< BoardInterface.xMaxSize; j++){
+				if(board.getBubbleValue(i, j)==5){continue;}
+				
+				board.touch(i, j);
+				if(board.isEmpty()){
+					solutions.addFirst(new Dimension(j+1,i+1));
+					return true;
+				}
+				if(this.solver(board, (moves-1), solutions)){
+					solutions.addFirst(new Dimension(j+1,i+1));
+					return true;
+					
+				}
+			
+			}
+		
+		return false;
+	}
 
+	@Override
+	public String toString(){
+		String solutionString=new String();
+		
+		for(Dimension position: this.solution){
+        	solutionString=solutionString.concat(position.width+"="+position.height+"," );
+        }
+		return solutionString;
+		
+	}
 }

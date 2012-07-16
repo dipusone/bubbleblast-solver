@@ -169,9 +169,9 @@ public class Board implements BoardInterface {
 	 */
 	public boolean isEmpty() {
 		for (int i=0; i< BoardInterface.yMaxSize ; i++)
-			for(int j=0; i< BoardInterface.xMaxSize; j++)
-				if(this.board[i][j].isAlive()) return true;
-		return false;
+			for(int j=0; j< BoardInterface.xMaxSize; j++)
+				if(this.board[i][j].isAlive()) return false;
+		return true;
 	}
 
 }

@@ -34,5 +34,7 @@ public interface BoardSolverInterface {
 	 * @return a LinkedList of Dimension object which are in the for Column,Row
 	 */
 	public LinkedList<Dimension> getSolution();
+	
+	public String toString();
 
 }
