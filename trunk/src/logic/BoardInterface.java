@@ -11,5 +11,6 @@ public interface BoardInterface {
 	public void touch(int yPos, int xPos);
 	public int getBubbleValue(int yPos, int xPos);
 	public boolean isEmpty();
+	public BoardInterface copy();
 
 }

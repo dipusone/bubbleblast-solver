@@ -170,8 +170,21 @@ public class Board implements BoardInterface {
 	public boolean isEmpty() {
 		for (int i=0; i< BoardInterface.yMaxSize ; i++)
 			for(int j=0; j< BoardInterface.xMaxSize; j++)
-				if(this.board[i][j].isAlive()) return false;
+				if(this.board[i][j].getSize()!=5) return false;
 		return true;
+	}
+	
+	
+	public BoardInterface copy(){
+		Board cloneBoard=new Board();
+		for (int i=0; i< BoardInterface.yMaxSize; i++){
+			for(int j=0; j< BoardInterface.xMaxSize; j++ ){
+			cloneBoard.setBubble(i, j, this.board[i][j].getSize());
+			}
+		
+		
+		}
+		return cloneBoard;
 	}
 
 }

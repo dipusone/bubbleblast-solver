@@ -55,6 +55,19 @@ public class Bubble {
 		return this.size;
 		
 	}
+	public void setSize(int size){
+		if( size <1 || size >5)
+			throw new IllegalArgumentException("Size must be an integer bethween 1 and 5");
+		
+		this.size=size;
+		if (this.size <5)
+			this.isAlive=true;
+		else
+			this.isAlive=false;
+	}
 
-	
+	public Bubble clone(){
+		return new Bubble(this.size);
+		
+	}
 }

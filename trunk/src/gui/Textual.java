@@ -18,11 +18,13 @@ public class Textual {
 
         /**
          * @param args
+         * @throws IOException 
+         * @throws NumberFormatException 
          */
 
 
 
-        public static void main(String[] args) {
+        public static void main(String[] args) throws NumberFormatException, IOException {
 
                 BoardInterface board= (BoardInterface) new Board();
                 BufferedReader inputBuffer = new BufferedReader(new InputStreamReader(System.in));
@@ -46,10 +48,21 @@ public class Textual {
                         }
 
                         }
-                System.out.print("Number of moves?: ");
-                int moves=0;
+               BoardSolverInterface boardsol=new BoardSolver();
+                boardsol.initBoard(board);
+                System.out.print("Moves: "); int i=Integer.parseInt(inputBuffer.readLine());
+                boardsol.initMoves(i);
+                boardsol.solve();
+                
+                System.out.println(boardsol.toString());
+            /*
+                
+            
+			while(true){
+				System.out.print("X:");
+				int x=0;
 				try {
-					moves = Integer.parseInt(inputBuffer.readLine());
+					x = Integer.parseInt(inputBuffer.readLine());
 				} catch (NumberFormatException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -57,14 +70,21 @@ public class Textual {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-                System.out.println();
-                
-                BoardSolverInterface solver=(BoardSolverInterface)new BoardSolver();
-                solver.initBoard(board);
-                solver.initMoves(moves);
-                solver.solve();
-               System.out.println(solver.toString());
-               
+				System.out.print("Y:");
+				int y=0;
+				try {
+					y = Integer.parseInt(inputBuffer.readLine());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+                board.touch(y-1, x-1);
+                printBoard(board);
+			}*/
 
         }
 
@@ -78,7 +98,7 @@ public class Textual {
 
 
         private static void printDottedBoard(BoardInterface board,int cury, int curx){
-
+        		System.out.println();
                 for (int i=0; i< BoardInterface.yMaxSize; i++){
                         for(int j=0; j< BoardInterface.xMaxSize; j++ ){
                                 if(i == cury && j==curx){
