@@ -28,16 +28,27 @@ public class Textual {
 
                 BoardInterface board= (BoardInterface) new Board();
                 BufferedReader inputBuffer = new BufferedReader(new InputStreamReader(System.in));
-
+                String input;
+                
                 for (int i=0; i< BoardInterface.yMaxSize; i++){
                         for(int j=0; j< BoardInterface.xMaxSize; j++ ){
                                  try {
 
                                         printDottedBoard(board, i,j);
                                          
-                                        String input=inputBuffer.readLine();
+                                        while (true) {
+										
+                                        input=inputBuffer.readLine();
+                                        
+                                        try{
                                         board.setBubble(i, j, input.isEmpty() ? 5 :Integer.parseInt(input));
-
+                                        }
+                                        catch(NumberFormatException e){
+                                        	//e.printStackTrace();
+                                        	continue;
+                                        }
+                                        break;
+                                        }
 
 
                                  } catch (IOException e) {
@@ -48,17 +59,17 @@ public class Textual {
                         }
 
                         }
-               BoardSolverInterface boardsol=new BoardSolver();
-                boardsol.initBoard(board);
-                System.out.print("Moves: "); int i=Integer.parseInt(inputBuffer.readLine());
-                boardsol.initMoves(i);
-                boardsol.solve();
+               //BoardSolverInterface boardsol=new BoardSolver();
+                //boardsol.initBoard(board);
+                //System.out.print("Moves: "); int i=Integer.parseInt(inputBuffer.readLine());
+                //boardsol.initMoves(i);
+                //boardsol.solve();
                 
-                System.out.println(boardsol.toString());
-            /*
+                //System.out.println(boardsol.toString());
+            
                 
             
-			while(true){
+			while(!board.isEmpty()){
 				System.out.print("X:");
 				int x=0;
 				try {
@@ -84,8 +95,10 @@ public class Textual {
 				
                 board.touch(y-1, x-1);
                 printBoard(board);
-			}*/
+			}
 
+			System.out.println();
+			System.out.println("Board is empty: " + board.isEmpty());
         }
 
 

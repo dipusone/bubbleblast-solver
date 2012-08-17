@@ -23,6 +23,15 @@ public class Board implements BoardInterface {
 		
 			
 	}
+	 public Board(BoardInterface Board){
+		 
+		 this.board=new Bubble [BoardInterface.yMaxSize][BoardInterface.xMaxSize];
+		 for (int i=0; i< BoardInterface.yMaxSize; i++){
+				for(int j=0; j< BoardInterface.xMaxSize; j++ ){
+				this.board[i][j]=new Bubble((Board.getBubbleValue(i, j)));
+				}
+			}	
+	 }
 	
 	@Override
 	public void setBubble(int yPos, int xPos, int value) {

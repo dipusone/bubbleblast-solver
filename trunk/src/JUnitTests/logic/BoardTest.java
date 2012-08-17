@@ -71,5 +71,21 @@ public class BoardTest {
 		//assertFalse( copyBoard.getBubbleValue(0, 0)==testBoard.getBubbleValue(0, 0));
 		
 	}
+	
+	@Test
+	public void testBoard(){
+	BoardInterface copyBoard;
+		
+		
+		for (int i =0; i< 6; i++)for(int j=0; j<5; j++)this.testBoard.setBubble(i, j, 1);
+		for (int i =0; i< 6; i++)for(int j=0; j<5; j++)assertTrue(this.testBoard.getBubbleValue(i, j) == 1);
+		
+		
+		copyBoard=new Board(this.testBoard);
+		
+		copyBoard.touch(0, 0);
+		assertFalse(this.testBoard.getBubbleValue(0,0)==copyBoard.getBubbleValue(0, 0));
+		
+	}
 
 }

@@ -7,6 +7,7 @@ public interface BoardInterface {
     public static int yMaxSize = 6;
     public static int yMinSize =0;
     
+    
 	public void setBubble(int xPos, int yPos, int value);
 	public void touch(int yPos, int xPos);
 	public int getBubbleValue(int yPos, int xPos);
