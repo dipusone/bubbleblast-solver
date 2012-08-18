@@ -14,19 +14,19 @@ public interface BoardSolverInterface {
 	 * @param board the board to solve
 	 */
 	
-	public void init(BoardInterface board);
+	public BoardSolverInterface init(BoardInterface board);
 	/**
 	 * Set the Max number of moves t use to solve the board
 	 *  
 	 * @param moves
 	 * 
 	 */
-	public void setMoves(int moves);
+	public BoardSolverInterface setMoves(int moves);
 	/**
 	 * This try to solve the board
 	 * @return a LinkedList of Dimension object which are in the for Column,Row
 	 */
-	public LinkedList<Dimension> solve();
+	public BoardSolverInterface solve();
 	
 	/**
 	 * Get the list with the solution

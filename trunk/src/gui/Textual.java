@@ -79,12 +79,12 @@ public class Textual {
                    }
                    break;
                    }
-               boardSolver.setMoves(i);
-               boardSolver.solve();
+               boardSolver.setMoves(i).solve();
+               
                 
                System.out.println();
                printBoard(board);
-               System.out.println(boardSolver.isSolved()? "No Solutions!" : "Solution: "+boardSolver.toString());
+               System.out.println(!boardSolver.isSolved()? "No Solutions!" : "Solution: "+boardSolver.toString());
                
         }
 

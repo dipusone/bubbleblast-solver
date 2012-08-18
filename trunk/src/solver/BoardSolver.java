@@ -19,27 +19,27 @@ public class BoardSolver implements BoardSolverInterface {
 	}
 	
 	@Override
-	public void init(BoardInterface board) {
+	public BoardSolverInterface init(BoardInterface board) {
 		if (board == null) throw new IllegalArgumentException("Board cant' be null");
 		this.board=board;
 		this.solution=new LinkedList<Dimension>();
 		this.solved=false;
-
+		return this;
 	}
 
 	@Override
-	public void setMoves(int moves) {
+	public BoardSolverInterface setMoves(int moves) {
 		if ( moves < 0) throw new IllegalArgumentException("Moves cant' be a value less than 0. Otherwise the board is unsolvable");
 		if(this.board ==null) throw new InternalError("You have to call initBoard() before set moves");
 		this.moves=Integer.valueOf(moves);
-		
+		return this;
 	}
 
 	@Override
-	public LinkedList<Dimension> solve() {
+	public BoardSolverInterface solve() {
 		if(solver(this.board, this.moves,this.solution)){
 			this.solved=true;
-			return this.solution;
+			return this;
 			}
 		
 		return null;
@@ -47,8 +47,12 @@ public class BoardSolver implements BoardSolverInterface {
 
 	@Override
 	public LinkedList<Dimension> getSolution() {
+		LinkedList<Dimension> returnSolution= new LinkedList<Dimension>();
 		if(this.solution ==null) throw new IllegalAccessError("Before you have to call solve()");
-		return (LinkedList<Dimension>)this.solution;
+		for (Dimension dimension: this.solution){
+			returnSolution.add(new Dimension(dimension));
+		}
+		return returnSolution;
 	}
 	
 	
