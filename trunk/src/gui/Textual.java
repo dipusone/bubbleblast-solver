@@ -1,13 +1,12 @@
 package gui;
 /**
- * TODO White  Java documentations!
+ * TODO Write  Java documentations!
  * 
  */
 
 
-import java.awt.Dimension;
 import java.io.*;
-import java.util.LinkedList;
+
 
 import solver.BoardSolver;
 import solver.BoardSolverInterface;
@@ -59,46 +58,34 @@ public class Textual {
                         }
 
                         }
-               BoardSolverInterface boardsol=new BoardSolver();
-               boardsol.initBoard(board);
-               System.out.print("Moves: "); int i=Integer.parseInt(inputBuffer.readLine());
-               boardsol.initMoves(i);
-               boardsol.solve();
                 
-               System.out.println(boardsol.toString());
-            
+               if(board.isEmpty()){System.out.println("The board is empty"); return;}
+              
+               int i;
+               
+               BoardSolverInterface boardSolver=new BoardSolver();
+               boardSolver.init(board);
+               
+               while (true) {
+            	   System.out.print("Moves: "); 
+                   input=inputBuffer.readLine();
+                   
+                   try{
+                	   i=Integer.parseInt(input);
+                   }
+                   catch(NumberFormatException e){
+                	   System.out.println();System.out.println("Moves must be an integer >=0!");
+                   	continue;
+                   }
+                   break;
+                   }
+               boardSolver.setMoves(i);
+               boardSolver.solve();
                 
-            /*
-			while(!board.isEmpty()){
-				System.out.print("X:");
-				int x=0;
-				try {
-					x = Integer.parseInt(inputBuffer.readLine());
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				System.out.print("Y:");
-				int y=0;
-				try {
-					y = Integer.parseInt(inputBuffer.readLine());
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-                board.touch(y-1, x-1);
-                printBoard(board);
-			}*/
-
-			System.out.println();
-			System.out.println("Board is empty: " + board.isEmpty());
+               System.out.println();
+               printBoard(board);
+               System.out.println(boardSolver.isSolved()? "No Solutions!" : "Solution: "+boardSolver.toString());
+               
         }
 
 

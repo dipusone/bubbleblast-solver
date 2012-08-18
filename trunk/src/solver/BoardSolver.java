@@ -3,8 +3,6 @@ package solver;
 import java.awt.Dimension;
 import java.util.LinkedList;
 
-import javax.management.InvalidAttributeValueException;
-
 import logic.Board;
 import logic.BoardInterface;
 
@@ -13,6 +11,7 @@ public class BoardSolver implements BoardSolverInterface {
 	LinkedList<Dimension> solution=null;
 	BoardInterface board=null;
 	Integer moves=null;
+	boolean solved;
 	
 	
 	public BoardSolver(){
@@ -20,15 +19,16 @@ public class BoardSolver implements BoardSolverInterface {
 	}
 	
 	@Override
-	public void initBoard(BoardInterface board) {
+	public void init(BoardInterface board) {
 		if (board == null) throw new IllegalArgumentException("Board cant' be null");
 		this.board=board;
 		this.solution=new LinkedList<Dimension>();
+		this.solved=false;
 
 	}
 
 	@Override
-	public void initMoves(int moves) {
+	public void setMoves(int moves) {
 		if ( moves < 0) throw new IllegalArgumentException("Moves cant' be a value less than 0. Otherwise the board is unsolvable");
 		if(this.board ==null) throw new InternalError("You have to call initBoard() before set moves");
 		this.moves=Integer.valueOf(moves);
@@ -37,8 +37,10 @@ public class BoardSolver implements BoardSolverInterface {
 
 	@Override
 	public LinkedList<Dimension> solve() {
-		if(solver(this.board, this.moves,this.solution))
+		if(solver(this.board, this.moves,this.solution)){
+			this.solved=true;
 			return this.solution;
+			}
 		
 		return null;
 	}
@@ -94,21 +96,11 @@ public class BoardSolver implements BoardSolverInterface {
 		return solutionString;
 		
 	}
-	private static void printDottedBoard(BoardInterface board,int cury, int curx){
-		System.out.println();
-		System.out.println();
-        for (int i=0; i< BoardInterface.yMaxSize; i++){
-                for(int j=0; j< BoardInterface.xMaxSize; j++ ){
-                        if(i == cury && j==curx){
-                                System.err.print("*");
-                        }
-                        else{
 
-                                System.err.print((board.getBubbleValue(i, j) ==5 )? "-" :board.getBubbleValue(i, j)  );
-
-                        }
-                }
-        System.out.println();
-        }
+	@Override
+	public boolean isSolved() {
+		return this.solved;
 	}
+	
+	
 }

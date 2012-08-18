@@ -14,14 +14,14 @@ public interface BoardSolverInterface {
 	 * @param board the board to solve
 	 */
 	
-	public void initBoard(BoardInterface board);
+	public void init(BoardInterface board);
 	/**
 	 * Set the Max number of moves t use to solve the board
 	 *  
 	 * @param moves
 	 * 
 	 */
-	public void initMoves(int moves);
+	public void setMoves(int moves);
 	/**
 	 * This try to solve the board
 	 * @return a LinkedList of Dimension object which are in the for Column,Row
@@ -35,6 +35,11 @@ public interface BoardSolverInterface {
 	 */
 	public LinkedList<Dimension> getSolution();
 	
+	/**
+	 * Check if the passed board had been solved
+	 * @return true if the board had been solved, false otherwise
+	 */
+	public boolean isSolved();
 	public String toString();
 
 }
