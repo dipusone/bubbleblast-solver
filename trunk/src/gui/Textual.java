@@ -59,16 +59,16 @@ public class Textual {
                         }
 
                         }
-               //BoardSolverInterface boardsol=new BoardSolver();
-                //boardsol.initBoard(board);
-                //System.out.print("Moves: "); int i=Integer.parseInt(inputBuffer.readLine());
-                //boardsol.initMoves(i);
-                //boardsol.solve();
+               BoardSolverInterface boardsol=new BoardSolver();
+               boardsol.initBoard(board);
+               System.out.print("Moves: "); int i=Integer.parseInt(inputBuffer.readLine());
+               boardsol.initMoves(i);
+               boardsol.solve();
                 
-                //System.out.println(boardsol.toString());
+               System.out.println(boardsol.toString());
             
                 
-            
+            /*
 			while(!board.isEmpty()){
 				System.out.print("X:");
 				int x=0;
@@ -95,7 +95,7 @@ public class Textual {
 				
                 board.touch(y-1, x-1);
                 printBoard(board);
-			}
+			}*/
 
 			System.out.println();
 			System.out.println("Board is empty: " + board.isEmpty());

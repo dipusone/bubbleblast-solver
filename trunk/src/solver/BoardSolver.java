@@ -51,28 +51,28 @@ public class BoardSolver implements BoardSolverInterface {
 	
 	
 	private boolean solver(BoardInterface board, int moves, LinkedList<Dimension> solutions){
-		BoardInterface copyBoard;
+		BoardInterface workOnBoard;
 		
-		if(moves==0){return false;};
 		if(board.isEmpty()){return true;}
-		if(!board.isEmpty() && moves<=0){return false;}
+		if(moves==0){return false;}
 		
 		
-		for(int i=BoardInterface.yMaxSize-1; i >0; i--){
+		
+		for(int i=0; i < BoardInterface.yMaxSize; i++){
 			for(int j=0; j< BoardInterface.xMaxSize; j++){
 				//FIXME Trovato l'errore logico! Ad ogni ciclo io devo partire con una board come se fosse nuova! Ripulire la board aq ogni interazione
 				
-				copyBoard=board.copy();
-				copyBoard.touch(i, j);
+				workOnBoard=new Board(board);
+				workOnBoard.touch(i, j);
 				
-				if(copyBoard.getBubbleValue(i, j)==5){continue;}
+				//if(workOnBoard.getBubbleValue(i, j)==5){continue;}
 				
-				
-				if(copyBoard.isEmpty()){
+				/*
+				if(workOnBoard.isEmpty()){
 					solutions.addFirst(new Dimension(j+1,i+1));
 					return true;
-				}
-				if(this.solver(copyBoard, (moves-1), solutions)){
+				}*/
+				if(this.solver(workOnBoard, (moves-1), solutions)){
 					solutions.addFirst(new Dimension(j+1,i+1));
 					return true;
 					
