@@ -16,7 +16,7 @@ public class Bubble {
 	 * 3=green
 	 * 4=red
 	 * 5=dead
-	 * @param size grandezza della sfera, se e' ==0 la sfeera sara' considerata una casella vuota
+	 * @param size grandezza della sfera, se e' ==0 la sfera sara' considerata una casella vuota
 	 */
 	public Bubble(int size){
 		if( size <1 || size >5)
@@ -52,7 +52,8 @@ public class Bubble {
 	}
 
 	public int getSize(){
-		return this.size;
+		int returnInt=this.size;
+		return returnInt;
 		
 	}
 	public void setSize(int size){

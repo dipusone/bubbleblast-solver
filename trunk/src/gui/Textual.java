@@ -42,7 +42,7 @@ public class Textual {
                                         try{
                                         board.setBubble(i, j, input.isEmpty() ? 5 :Integer.parseInt(input));
                                         }
-                                        catch(NumberFormatException e){
+                                        catch(Exception e){
                                         	//e.printStackTrace();
                                         	continue;
                                         }
@@ -61,8 +61,8 @@ public class Textual {
                 
                if(board.isEmpty()){System.out.println("The board is empty"); return;}
               
-               int i;
                
+               int i;
                BoardSolverInterface boardSolver=new BoardSolver();
                boardSolver.init(board);
                

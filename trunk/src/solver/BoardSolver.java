@@ -60,7 +60,7 @@ public class BoardSolver implements BoardSolverInterface {
 		BoardInterface workOnBoard;
 		
 		if(board.isEmpty()){return true;}
-		if(moves==0){return false;}
+		if(moves <=0){return false;}
 		
 		
 		
@@ -69,6 +69,8 @@ public class BoardSolver implements BoardSolverInterface {
 				//FIXME Trovato l'errore logico! Ad ogni ciclo io devo partire con una board come se fosse nuova! Ripulire la board aq ogni interazione
 				
 				workOnBoard=new Board(board);
+				if(workOnBoard.getBubbleValue(i, j)==5){continue;}
+				
 				workOnBoard.touch(i, j);
 				
 				//if(workOnBoard.getBubbleValue(i, j)==5){continue;}
