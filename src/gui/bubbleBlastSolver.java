@@ -1,6 +1,6 @@
 package gui;
 
-public class sticazzi {
+public class bubbleBlastSolver {
 
 	/**
 	 * @param args
