@@ -1,8 +1,6 @@
 package gui;
 
 import java.awt.*;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 
 import logic.*;
 import javax.swing.*;
@@ -10,10 +8,12 @@ import javax.swing.*;
 public class Gui extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static int xSize =400;
-	private static int ySize =600;
+	private static int ySize =400;
 	private JPanel buttonsPanel;
 	private JPanel menuPanel;
+	private JPanel outputPanel;
 	private JButton board[][];
+	private JLabel solutionLabel;
 	
 	public Gui(){
 		//Build main Menu
@@ -36,6 +36,7 @@ public class Gui extends JFrame {
 		//Build the button panel
 		
 		this.buttonsPanel=new JPanel(new GridLayout(BoardInterface.yMaxSize,BoardInterface.xMaxSize));
+		this.buttonsPanel.setSize(250, 300);
 		this.add(this.buttonsPanel,BorderLayout.CENTER);
 		
 		this.board=new JButton[BoardInterface.yMaxSize][BoardInterface.xMaxSize];
@@ -44,11 +45,17 @@ public class Gui extends JFrame {
 			for (int j=0; j< BoardInterface.xMaxSize; j++){
 				
 				this.board[i][j]=new JButton();
-				this.board[i][j].setPreferredSize(new Dimension(50, 50));
+				
+			
 				this.buttonsPanel.add(this.board[i][j]);
 			}
 		}
 		
+		//Build the output panel
+		this.outputPanel=new JPanel(new BorderLayout());
+		this.solutionLabel=new JLabel("Soluzione");
+		this.outputPanel.add(this.solutionLabel,BorderLayout.CENTER);
+		this.add(this.outputPanel, BorderLayout.SOUTH);
 		
 		
 		
