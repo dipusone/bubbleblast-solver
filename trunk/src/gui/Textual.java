@@ -7,7 +7,6 @@ package gui;
 
 import java.io.*;
 
-
 import solver.BoardSolver;
 import solver.BoardSolverInterface;
 
@@ -39,9 +38,7 @@ public class Textual {
 										
                                         input=inputBuffer.readLine();
                                         
-                                        try{
-                                        board.setBubble(i, j, input.isEmpty() ? 5 :Integer.parseInt(input));
-                                        }
+                                        try{board.setBubble(i, j, input.isEmpty() ? 5 :Integer.parseInt(input));}
                                         catch(Exception e){
                                         	//e.printStackTrace();
                                         	continue;
@@ -57,7 +54,8 @@ public class Textual {
 
                         }
 
-                        }
+               }
+               printBoard(board);
                 
                if(board.isEmpty()){System.out.println("The board is empty"); return;}
               

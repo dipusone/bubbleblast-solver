@@ -72,9 +72,7 @@ public class BoardSolver implements BoardSolverInterface {
 				if(workOnBoard.getBubbleValue(i, j)==5){continue;}
 				
 				workOnBoard.touch(i, j);
-				
-				//if(workOnBoard.getBubbleValue(i, j)==5){continue;}
-				
+								
 				/*
 				if(workOnBoard.isEmpty()){
 					solutions.addFirst(new Dimension(j+1,i+1));
