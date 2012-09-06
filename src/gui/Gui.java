@@ -78,12 +78,12 @@ public class Gui extends JFrame {
 		
 		this.bubbles=new ImageIcon [6];
 		
-		this.bubbles[0]=new ImageIcon("src/res/img/empty.png","0");
-		this.bubbles[1]=new ImageIcon("src/res/img/blue-s.png","1");
-		this.bubbles[2]=new ImageIcon("src/res/img/yellow-s.png","2");
-		this.bubbles[3]=new ImageIcon("src/res/img/green-s.png","3");
-		this.bubbles[4]=new ImageIcon("src/res/img/red-s.png","4");
-		this.bubbles[5]=new ImageIcon("src/res/img/empty.png","5");
+		this.bubbles[0]=new ImageIcon(getClass().getResource("/res/img/empty.png"),"0");
+		this.bubbles[1]=new ImageIcon(getClass().getResource("/res/img/blue-s.png"),"1");
+		this.bubbles[2]=new ImageIcon(getClass().getResource("/res/img/yellow-s.png"),"2");
+		this.bubbles[3]=new ImageIcon(getClass().getResource("/res/img/green-s.png"),"3");
+		this.bubbles[4]=new ImageIcon(getClass().getResource("/res/img/red-s.png"),"4");
+		this.bubbles[5]=new ImageIcon(getClass().getResource("/res/img/empty.png"),"5");
 	
 		
 		return this.bubbles;
