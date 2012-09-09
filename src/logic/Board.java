@@ -35,7 +35,7 @@ public class Board implements BoardInterface {
 	
 	@Override
 	public void setBubble(int yPos, int xPos, int value) {
-		if(xPos>= BoardInterface.xMinSize && xPos< BoardInterface.xMaxSize && yPos>=BoardInterface.yMaxSize && xPos< BoardInterface.yMaxSize)
+		if(xPos>= BoardInterface.xMinSize && xPos< BoardInterface.xMaxSize && yPos>=BoardInterface.yMinSize && xPos< BoardInterface.yMaxSize)
 			this.board[yPos][xPos]=new Bubble(value);
 		else 
 			throw new ArrayIndexOutOfBoundsException("Value out of ranges: " + value);
