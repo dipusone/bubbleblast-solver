@@ -56,41 +56,7 @@ public class BoardSolver implements BoardSolverInterface {
 	}
 	
 	
-	private boolean solver(BoardInterface board, int moves, LinkedList<Dimension> solutions){
-		BoardInterface workOnBoard;
-		
-		if(board.isEmpty()){return true;}
-		if(moves <=0){return false;}
-		
-		
-		
-		for(int i=0; i < BoardInterface.yMaxSize; i++){
-			for(int j=0; j< BoardInterface.xMaxSize; j++){
-				//FIXME Trovato l'errore logico! Ad ogni ciclo io devo partire con una board come se fosse nuova! Ripulire la board aq ogni interazione
-				
-				workOnBoard=new Board(board);
-				if(workOnBoard.getBubbleValue(i, j)==5){continue;}
-				
-				workOnBoard.touch(i, j);
-				
-				//if(workOnBoard.getBubbleValue(i, j)==5){continue;}
-				
-				/*
-				if(workOnBoard.isEmpty()){
-					solutions.addFirst(new Dimension(j+1,i+1));
-					return true;
-				}*/
-				if(this.solver(workOnBoard, (moves-1), solutions)){
-					solutions.addFirst(new Dimension(j+1,i+1));
-					return true;
-					
-				}
-				
-			
-			}
-		}
-		return false;
-	}
+	
 
 	@Override
 	public String toString(){
@@ -108,5 +74,76 @@ public class BoardSolver implements BoardSolverInterface {
 		return this.solved;
 	}
 	
+	private boolean solver(BoardInterface board, int moves, LinkedList<Dimension> solutions){
+		BoardInterface workOnBoard;
+		
+		if(board.isEmpty()){return true;}
+		if(moves <=0){return false;}
+		
+		if(moves ==1){
+			
+			if(this.monoSolver(board, solutions)){
+				return true;
+			}
+			
+			return false;
+		}
+		
+		
+		for(int i=0; i < BoardInterface.yMaxSize; i++){
+			for(int j=0; j< BoardInterface.xMaxSize; j++){
+				//TODO optimize algorithm 
+				
+				workOnBoard=new Board(board);
+				if(workOnBoard.getBubbleValue(i, j)==5){continue;}
+				
+				
+				workOnBoard.touch(i, j);
+							
+				
+				if(workOnBoard.isEmpty()){
+					solutions.addFirst(new Dimension(j+1,i+1));
+					return true;
+				}
+				if(this.solver(workOnBoard, (moves-1), solutions)){
+					solutions.addFirst(new Dimension(j+1,i+1));
+					return true;
+					
+				}
+				
+			
+			}
+		}
+		return false;
+	}
+
+	private boolean monoSolver(BoardInterface board,LinkedList<Dimension> solutions){
+		
+		BoardInterface workOnBoard;
+		
+		for(int i=0; i < BoardInterface.yMaxSize; i++){
+			for(int j=0; j< BoardInterface.xMaxSize; j++){
+				
+				if (board.getBubbleValue(i, j) == BoardInterface.RED){
+					workOnBoard=new Board(board);
+					workOnBoard.touch(i, j);
+					
+					if(workOnBoard.isEmpty()){
+						solutions.addFirst(new Dimension(j+1,i+1));
+						return true;
+					}
+					
+					
+				}
+				
+			}
+		}
+			
+			
+		
+		return false;
+	}
 	
+	
+
 }

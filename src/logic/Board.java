@@ -6,7 +6,7 @@ import exception.DeadBubbleException;
 import exception.FiredBulletException;
 
 
-
+//TODO Add iterator.
 public class Board implements BoardInterface {
 
 	Bubble board[][]; 
@@ -35,7 +35,7 @@ public class Board implements BoardInterface {
 	
 	@Override
 	public void setBubble(int yPos, int xPos, int value) {
-		if(xPos>=0 && xPos< BoardInterface.xMaxSize && yPos>=0 && xPos< BoardInterface.yMaxSize)
+		if(xPos>= BoardInterface.xMinSize && xPos< BoardInterface.xMaxSize && yPos>=BoardInterface.yMaxSize && xPos< BoardInterface.yMaxSize)
 			this.board[yPos][xPos]=new Bubble(value);
 		else 
 			throw new ArrayIndexOutOfBoundsException("Value out of ranges: " + value);
@@ -104,7 +104,7 @@ public class Board implements BoardInterface {
 							this.board[bulletPos[0]][bulletPos[1]].touch();
 						
 						} catch (DeadBubbleException e) {
-							// TODO Auto-generated catch block
+							
 							e.printStackTrace();
 						} catch (FiredBulletException e) {
 							//se viene generato un priettile 
