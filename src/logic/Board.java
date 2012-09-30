@@ -86,32 +86,36 @@ public class Board implements BoardInterface {
 					int [] bulletPos = null;
 					boolean []aliveSubBullets=bullet.getAliveSubBullets();
 					
-					if (aliveSubBullets[i]==false ){continue;}//Se il proiettile e' morto skippa
+					if (!aliveSubBullets[i] ){continue;}//Se il proiettile e' morto skippa
 					if(i ==0){bulletPos=bullet.getUpos();}
 					if(i ==1){bulletPos=bullet.getRpos();}
 					if(i ==2){bulletPos=bullet.getDpos();}
 					if(i ==3){bulletPos=bullet.getLpos();}
-					//Se bx-by e' vivo
-					if((bulletPos[1]<BoardInterface.xMaxSize && bulletPos[1]>= 0) &&(bulletPos[0]<BoardInterface.yMaxSize && bulletPos[0]>= 0)){
+					//Se e' all'interno della board
+					//0<x<5 && 0<y<6
+					if((bulletPos[1]<BoardInterface.xMaxSize && bulletPos[1]>=BoardInterface.xMinSize) &&(bulletPos[0]<BoardInterface.yMaxSize && bulletPos[0]>= BoardInterface.yMinSize)){
 						//Se e' all'interno della board
 						//0<x<5 && 0<y<6
-					if((this.board[bulletPos[0]][bulletPos[1]].isAlive())){
-					try {
-							if(i ==0){bullet.killUBullet();}
-							if(i ==1){bullet.killRBullet();}
-							if(i ==2){bullet.killDBullet();}
-							if(i ==3){bullet.killLBullet();}
-							this.board[bulletPos[0]][bulletPos[1]].touch();
-						
-						} catch (DeadBubbleException e) {
+					//Se bx-by e' vivo
+						if((this.board[bulletPos[0]][bulletPos[1]].isAlive())){
+					
+							try {
 							
-							e.printStackTrace();
-						} catch (FiredBulletException e) {
-							//se viene generato un priettile 
-							// 	aggiungo alla lista dei priettili
-							bulletList.add(new Bullet(bulletPos[0], bulletPos[1]));
-						}	
-					}}
+								if(i ==0){bullet.killUBullet();}
+								if(i ==1){bullet.killRBullet();}
+								if(i ==2){bullet.killDBullet();}
+								if(i ==3){bullet.killLBullet();}
+								this.board[bulletPos[0]][bulletPos[1]].touch();
+						
+							} 
+							catch (DeadBubbleException e) {	e.printStackTrace();} 
+							catch (FiredBulletException e) {
+								//se viene generato un priettile 
+								// 	aggiungo alla lista dei priettili
+								bulletList.add(new Bullet(bulletPos[0], bulletPos[1]));
+							}	
+						}
+					}
 					
 				}
 					
@@ -171,7 +175,7 @@ public class Board implements BoardInterface {
 
 	@Override
 	/**
-	 * Check if board ha at least one live bubble
+	 * Check if board has at least one live bubble
 	 * 
 	 * @return true if there is at last one live bubble
 	 * 			false otherwise
@@ -179,7 +183,7 @@ public class Board implements BoardInterface {
 	public boolean isEmpty() {
 		for (int i=0; i< BoardInterface.yMaxSize ; i++)
 			for(int j=0; j< BoardInterface.xMaxSize; j++)
-				if(this.board[i][j].getSize()!=5) return false;
+				if(this.board[i][j].getSize()!=BoardInterface.EMPTY) return false;
 		return true;
 	}
 	
