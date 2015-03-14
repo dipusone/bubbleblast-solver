@@ -1,0 +1,1 @@
+This is a solution finder for the game BubbleBlast 2. Still in developing, but working for now.
